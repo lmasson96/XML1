@@ -94,7 +94,8 @@ xmlns:b="http://bookshop.com">
 	<complexType name="sjType">
 		<sequence>
 			<element name="title" type="string"/>
-			<element name="volume_number" type="integer"/>
+			<element name="volume" type="integer"/>
+			<element name="number" type="integer"/>
 			<choice>
 				<element name="authors" type="b:authorsType"/>
 				<element name="editors" type="b:editorsType"/>

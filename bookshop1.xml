@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 
-<bookshop xmlns:b="http://bookshop.com">
+<bookshop xmlns:default="http://bookshop.com">
 	<scientific_department>
 		<scientific_books></scientific_books>
 		<scientific_journals></scientific_journals>
