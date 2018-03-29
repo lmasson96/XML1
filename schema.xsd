@@ -1,0 +1,171 @@
+<schema xmlns="http://www.w3.org/2001/XMLSchema"
+targetNamespace="http://bookshop.com"
+xmlns:b="http://bookshop.com">
+
+	<complexType name="bookshopType">
+		<sequence>
+			<element name="scientific_department" type="b:scientificType"/>
+			<element name="leisure_department" type="b:leisureType" />
+		</sequence>
+	</complexType>
+
+	<complexType name="scientificType">
+		<sequence>
+			<element name="scientific_books" type="b:sBooksType"/>
+			<element name="scientific_journals" type="b:sJournalsType" />
+		</sequence>
+	</complexType>
+
+	<complexType name="leisureType">
+		<sequence>
+			<element name="leisure_books" type="b:lBooksType"/>
+			<element name="leisure_periodicals" type="b:lPeriodicalsType" />
+		</sequence>
+	</complexType>
+
+	<complexType name="sBooksType">
+		<sequence>
+			<element name="book" type="b:sbType" minOccurs="0" maxOccurs="unbounded"/>
+		</sequence>
+	</complexType>
+
+	<complexType name="lBooksType">
+		<sequence>
+			<element name="book" type="b:lbType" minOccurs="0" maxOccurs="unbounded"/>
+		</sequence>
+	</complexType>
+
+	<complexType name="sJournalsType">
+		<sequence>
+			<element name="scientific_journal" type="b:sjType" minOccurs="0" maxOccurs="unbounded"/>
+		</sequence>
+	</complexType>
+
+	<complexType name="lPeriodicalsType">
+		<sequence>
+			<element name="leisure_periodical" type="b:lpType" minOccurs="0" maxOccurs="unbounded"/>
+		</sequence>
+	</complexType>
+	
+
+	<complexType name="sbType">
+		<sequence>
+			<element name="title" type="string"/>
+			<choice>
+				<element name="authors" type="b:authorsType"/>
+				<element name="editors" type="b:editorsType"/>
+			</choice>
+			<element name="publisher" type="string"/>
+			<element name="publication_year" type="date"/>
+			<element name="abstract" type="string" minOccurs="0"/>
+			<element name="edition" type="string" minOccurs="0"/>
+			<element name="isbn" minOccurs="0"> <!--13 digits exactly !!!-->
+				<simpleType>
+					<restriction base="integer">
+						<pattern value="[0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9]"/>
+					</restriction>
+				</simpleType>			
+			</element>	
+		</sequence>
+	</complexType>
+
+	<complexType name="lbType">
+		<!--<attribute name="genre" use="required">
+			<simpleType>
+				<restriction base="string">
+				<enumeration value="thriller"/>
+				<enumeration value="horror"/>
+				<enumeration value="sci/fi"/>
+				<enumeration value="romance"/>
+				<enumeration value="litterature"/>
+				</restriction>
+			</simpleType>		
+		</attribute>-->
+		<sequence>
+			<element name="title" type="string"/>
+			<element name="authors" type="b:authorsType"/>
+			<element name="publisher" type="string"/>
+			<element name="publication_year" type="date"/>
+			<element name="edition" type="string" minOccurs="0"/>
+			<element name="number_pages" type="integer" minOccurs="0"/>
+		</sequence>
+	</complexType>
+
+	<complexType name="sjType">
+		<sequence>
+			<element name="title" type="string"/>
+			<element name="volume_number" type="integer"/>
+			<choice>
+				<element name="authors" type="b:authorsType"/>
+				<element name="editors" type="b:editorsType"/>
+			</choice>
+			<element name="publication_year" type="date"/>
+			<element name="publisher" type="string" minOccurs="0"/>
+			<element name="impact_factor" minOccurs="0" maxOccurs="unbounded">
+				<complexType>
+					<simpleContent>
+						<extension base="integer">
+							<attribute name="year" type="date" use="required"/>
+						</extension>
+					</simpleContent>
+				</complexType>	
+			</element>
+			<element name="contents_table" type="b:contentTableType"/>
+		</sequence>
+	</complexType>
+
+	<complexType name="lpType">
+		<sequence>
+			<element name="title" type="string"/>
+			<element name="price">
+				<simpleType>
+					<restriction base="decimal"> <!--2 digits after point-->
+						<pattern value="[0-9]*[1-9].[0-9][0-9]"/>
+					</restriction>
+				</simpleType>			
+			</element>	
+			<element name="publisher" type="string"/>
+		</sequence>
+	</complexType>
+
+
+
+	<complexType name="authorsType">
+		<sequence>
+			<element name="author" type="string" minOccurs="0" maxOccurs="unbounded"/> <!--or should we say at least one author ?-->
+		</sequence>
+	</complexType>
+
+	<complexType name="editorsType">
+		<sequence>
+			<element name="editor" type="string" minOccurs="0" maxOccurs="unbounded"/> <!--or should we say at least one editor ?-->
+		</sequence>
+	</complexType>
+
+	<complexType name="contentTableType">
+		<sequence>
+			<element name="article" type="b:articleType" minOccurs="0" maxOccurs="unbounded"/> <!--or should we say at least one article ?-->
+		</sequence>
+	</complexType>
+
+	<complexType name="articleType">
+		<sequence>
+			<element name="title" type="string"/>
+			<element name="authors" type="b:authorsType"/>
+			<choice>
+				<sequence>
+					<element name="start_page" type="integer"/>
+					<element name="end_page" type="integer"/>
+				</sequence>
+				<element name="article_number" type="integer"/>
+			</choice>
+			<element name="publisher" type="string"/>
+		</sequence>
+	</complexType>
+
+
+
+	<!-- Global element declaration -->
+	<element name="bookshop" type="b:bookshopType"/>
+
+</schema>
