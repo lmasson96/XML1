@@ -1,6 +1,9 @@
 <schema xmlns="http://www.w3.org/2001/XMLSchema"
 targetNamespace="http://bookshop.com"
-xmlns:b="http://bookshop.com">
+xmlns:b="http://bookshop.com" elementFormDefault="qualified">
+
+	<!-- Global element declaration -->
+	<element name="bookshop" type="b:bookshopType"/>
 
 	<complexType name="bookshopType">
 		<sequence>
@@ -164,10 +167,5 @@ xmlns:b="http://bookshop.com">
 			<element name="publisher" type="string"/>
 		</sequence>
 	</complexType>
-
-
-
-	<!-- Global element declaration -->
-	<element name="bookshop" type="b:bookshopType"/>
 
 </schema>
