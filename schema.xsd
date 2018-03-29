@@ -70,7 +70,15 @@ xmlns:b="http://bookshop.com">
 	</complexType>
 
 	<complexType name="lbType">
-		<!--<attribute name="genre" use="required">
+		<sequence>
+			<element name="title" type="string"/>
+			<element name="authors" type="b:authorsType"/>
+			<element name="publisher" type="string"/>
+			<element name="publication_year" type="date"/>
+			<element name="edition" type="string" minOccurs="0"/>
+			<element name="number_pages" type="integer" minOccurs="0"/>
+		</sequence>
+		<attribute name="genre" use="required">
 			<simpleType>
 				<restriction base="string">
 				<enumeration value="thriller"/>
@@ -80,15 +88,8 @@ xmlns:b="http://bookshop.com">
 				<enumeration value="litterature"/>
 				</restriction>
 			</simpleType>		
-		</attribute>-->
-		<sequence>
-			<element name="title" type="string"/>
-			<element name="authors" type="b:authorsType"/>
-			<element name="publisher" type="string"/>
-			<element name="publication_year" type="date"/>
-			<element name="edition" type="string" minOccurs="0"/>
-			<element name="number_pages" type="integer" minOccurs="0"/>
-		</sequence>
+		</attribute>
+		
 	</complexType>
 
 	<complexType name="sjType">
