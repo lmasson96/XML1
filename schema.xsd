@@ -65,7 +65,7 @@ xmlns:b="http://bookshop.com" elementFormDefault="qualified">
 			<element name="isbn" minOccurs="0"> <!--13 digits exactly !!!-->
 				<simpleType>
 					<restriction base="integer">
-						<pattern value="[0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9]"/>
+						<pattern value="[0-9]{13}"/>
 					</restriction>
 				</simpleType>			
 			</element>	
@@ -150,19 +150,19 @@ xmlns:b="http://bookshop.com" elementFormDefault="qualified">
 
 	<complexType name="authorsType">
 		<sequence>
-			<element name="author" type="string" minOccurs="1" maxOccurs="unbounded"/> <!--or should we say at least one author ?-->
+			<element name="author" type="string" minOccurs="1" maxOccurs="unbounded"/>
 		</sequence>
 	</complexType>
 
 	<complexType name="editorsType">
 		<sequence>
-			<element name="editor" type="string" minOccurs="1" maxOccurs="unbounded"/> 						<!--or should we say at least one editor ?-->
+			<element name="editor" type="string" minOccurs="1" maxOccurs="unbounded"/>
 		</sequence>
 	</complexType>
 
 	<complexType name="contentTableType">
 		<sequence>
-			<element name="article" type="b:articleType" minOccurs="1" maxOccurs="unbounded"/> 				<!--or should we say at least one article in a journal ?-->
+			<element name="article" type="b:articleType" minOccurs="1" maxOccurs="unbounded"/>
 		</sequence>
 	</complexType>
 
@@ -183,7 +183,7 @@ xmlns:b="http://bookshop.com" elementFormDefault="qualified">
 	
 	<simpleType name="yearType">
 		<restriction base="integer">
-			<pattern value="[0-9][0-9][0-9][0-9]"/>
+			<pattern value="[0-9]{4}"/>
 		</restriction>
 	</simpleType>
 
