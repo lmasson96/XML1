@@ -2,11 +2,77 @@
 
 <bookshop xmlns="http://bookshop.com">
 	<scientific_department>
-		<scientific_books></scientific_books>
-		<scientific_journals></scientific_journals>
+		<scientific_books>
+			<book>
+				<title>XML</title>				
+				<authors>
+					<author>Magnus Stein</author>
+					<author>Ingo Dellwig</author>
+				</authors>
+				<publisher>Addison-Wesley</publisher>
+				<publication_year>2001</publication_year>
+				<isbn>0000201758741</isbn>
+			</book>
+
+		</scientific_books>
+
+		<scientific_journals>
+			<scientific_journal>
+				<title>Elsevier</title>
+				<volume>6</volume>
+				<number>2</number>				
+				<authors>
+					<author>Micheal Schumacher</author>
+				</authors>
+				<publication_year>2004</publication_year>
+				<impact_factor year="2005">56798</impact_factor>
+				<contents_table>
+					<article>
+						<title>XML</title>
+						<authors>
+							<author>Micheal Schumacher</author>						
+						</authors>
+						<article_number>1</article_number>
+						<publisher>Hugh Hefner</publisher>					
+					</article>
+					<article>
+						<title>Cars</title>
+						<authors>
+							<author>Micheal Schumacher</author>						
+						</authors>
+						<start_page>7</start_page>
+						<end_page>9</end_page>
+						<publisher>Hugh Hefner</publisher>					
+					</article>				
+				</contents_table>
+			</scientific_journal>
+
+		</scientific_journals>
+
 	</scientific_department>
+
 	<leisure_department>
-		<leisure_books></leisure_books>
-		<leisure_periodicals></leisure_periodicals>
+		<leisure_books>
+			<book genre="horror">
+				<title>Black Cathedral</title>				
+				<authors>
+					<author>L. H. Maynard</author>
+					<author>N. P. M. Sims</author>
+				</authors>
+				<publisher>Leisure Books</publisher>
+				<publication_year>2008</publication_year>
+				<edition>1</edition>
+				<number_pages>287</number_pages>
+			</book>
+		
+		</leisure_books>
+		<leisure_periodicals>
+			<leisure_periodical>
+				<title>Time</title>
+				<price currency="dollar">4.99</price>
+				<publisher>Time</publisher>		
+			</leisure_periodical>
+
+		</leisure_periodicals>
 	</leisure_department>
 </bookshop>

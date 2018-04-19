@@ -59,9 +59,9 @@ xmlns:b="http://bookshop.com" elementFormDefault="qualified">
 				<element name="editors" type="b:editorsType"/>
 			</choice>
 			<element name="publisher" type="string"/>
-			<element name="publication_year" type="date"/>
+			<element name="publication_year" type ="b:yearType"/>
 			<element name="abstract" type="string" minOccurs="0"/>
-			<element name="edition" type="string" minOccurs="0"/>
+			<element name="edition" type="integer" minOccurs="0"/>
 			<element name="isbn" minOccurs="0"> <!--13 digits exactly !!!-->
 				<simpleType>
 					<restriction base="integer">
@@ -77,8 +77,8 @@ xmlns:b="http://bookshop.com" elementFormDefault="qualified">
 			<element name="title" type="string"/>
 			<element name="authors" type="b:authorsType"/>
 			<element name="publisher" type="string"/>
-			<element name="publication_year" type="date"/>
-			<element name="edition" type="string" minOccurs="0"/>
+			<element name="publication_year" type ="b:yearType"/>
+			<element name="edition" type="integer" minOccurs="0"/>
 			<element name="number_pages" type="integer" minOccurs="0"/>
 		</sequence>
 		<attribute name="genre" use="required">
@@ -104,13 +104,13 @@ xmlns:b="http://bookshop.com" elementFormDefault="qualified">
 				<element name="authors" type="b:authorsType"/>
 				<element name="editors" type="b:editorsType"/>
 			</choice>
-			<element name="publication_year" type="date"/>
+			<element name="publication_year" type ="b:yearType"/>
 			<element name="publisher" type="string" minOccurs="0"/>
 			<element name="impact_factor" minOccurs="0" maxOccurs="unbounded">
 				<complexType>
 					<simpleContent>
 						<extension base="integer">
-							<attribute name="year" type="date" use="required"/>
+							<attribute name="year" type="b:yearType" use="required"/>
 						</extension>
 					</simpleContent>
 				</complexType>	
@@ -123,12 +123,25 @@ xmlns:b="http://bookshop.com" elementFormDefault="qualified">
 		<sequence>
 			<element name="title" type="string"/>
 			<element name="price">
-				<simpleType>
-					<restriction base="decimal"> <!--2 digits after point-->
-						<pattern value="[0-9]*[1-9].[0-9][0-9]"/>
-					</restriction>
-				</simpleType>			
-			</element>	
+				<complexType>
+					<simpleContent>
+						<extension base="decimal">
+							<attribute name="currency" use="required">
+								<simpleType>
+									<restriction base="string">
+										<enumeration value="euro"/>
+										<enumeration value="dollar"/>
+										<enumeration value="pound"/>
+										<enumeration value="yen"/>
+										<enumeration value="rial"/>
+									</restriction>
+								</simpleType>		
+							</attribute>	
+						</extension>
+					</simpleContent>
+				</complexType>								
+			</element>
+	
 			<element name="publisher" type="string"/>
 		</sequence>
 	</complexType>
@@ -137,19 +150,19 @@ xmlns:b="http://bookshop.com" elementFormDefault="qualified">
 
 	<complexType name="authorsType">
 		<sequence>
-			<element name="author" type="string" minOccurs="0" maxOccurs="unbounded"/> <!--or should we say at least one author ?-->
+			<element name="author" type="string" minOccurs="1" maxOccurs="unbounded"/> <!--or should we say at least one author ?-->
 		</sequence>
 	</complexType>
 
 	<complexType name="editorsType">
 		<sequence>
-			<element name="editor" type="string" minOccurs="0" maxOccurs="unbounded"/> <!--or should we say at least one editor ?-->
+			<element name="editor" type="string" minOccurs="1" maxOccurs="unbounded"/> 						<!--or should we say at least one editor ?-->
 		</sequence>
 	</complexType>
 
 	<complexType name="contentTableType">
 		<sequence>
-			<element name="article" type="b:articleType" minOccurs="0" maxOccurs="unbounded"/> <!--or should we say at least one article ?-->
+			<element name="article" type="b:articleType" minOccurs="1" maxOccurs="unbounded"/> 				<!--or should we say at least one article in a journal ?-->
 		</sequence>
 	</complexType>
 
@@ -167,5 +180,11 @@ xmlns:b="http://bookshop.com" elementFormDefault="qualified">
 			<element name="publisher" type="string"/>
 		</sequence>
 	</complexType>
+	
+	<simpleType name="yearType">
+		<restriction base="integer">
+			<pattern value="[0-9][0-9][0-9][0-9]"/>
+		</restriction>
+	</simpleType>
 
 </schema>
